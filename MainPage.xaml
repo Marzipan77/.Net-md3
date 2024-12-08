@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MD3Marcis.MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="10">
+            <!-- Buttons to Load Data -->
+            <Button Text="Show Students" Clicked="ShowStudents" />
+            <Button Text="Show Courses" Clicked="ShowCourses" />
+            <Button Text="Show Assignments" Clicked="ShowAssignments" />
+            <Button Text="Show Submissions" Clicked="ShowSubmissions" />
+            <Button Text="Show Teachers" Clicked="ShowTeachers" />
+
+            <!-- CollectionView to Display Data -->
+            <CollectionView x:Name="DataView" Margin="0,10">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" CornerRadius="5" Padding="10" Margin="5">
+                            <Label Text="{Binding .}" LineBreakMode="WordWrap" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- CRUD for Students -->
+            <StackLayout x:Name="StudentCrudForm" IsVisible="False" Spacing="10">
+                <Label Text="Add Student" FontAttributes="Bold" />
+                <Entry x:Name="StudentNameEntry" Placeholder="Name" />
+                <Entry x:Name="StudentSurnameEntry" Placeholder="Surname" />
+                <Entry x:Name="StudentIdNumberEntry" Placeholder="Student ID" Keyboard="Numeric" />
+                <Picker x:Name="StudentGenderPicker" Title="Gender">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Man</x:String>
+                            <x:String>Woman</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Save Student" Clicked="AddStudent" />
+
+                <Label Text="Edit Student" FontAttributes="Bold" />
+                <Picker x:Name="EditStudentPicker" Title="Select Student to Edit" />
+                <Entry x:Name="EditStudentNameEntry" Placeholder="New Name" />
+                <Entry x:Name="EditStudentSurnameEntry" Placeholder="New Surname" />
+                <Entry x:Name="EditStudentIdNumberEntry" Placeholder="New Student ID" Keyboard="Numeric" />
+                <Picker x:Name="EditStudentGenderPicker" Title="New Gender">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Man</x:String>
+                            <x:String>Woman</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Edit Student" Clicked="EditStudent" />
+
+                <Label Text="Delete Student" FontAttributes="Bold" />
+                <Picker x:Name="DeleteStudentPicker" Title="Select Student to Delete" />
+                <Button Text="Delete Student" Clicked="DeleteStudent" />
+            </StackLayout>
+
+            <!-- CRUD for Assignments -->
+            <StackLayout x:Name="AssignmentCrudForm" IsVisible="False" Spacing="10">
+                <!-- Add Assignment -->
+                <Label Text="Add Assignment" FontAttributes="Bold" />
+                <Entry x:Name="AssignmentDescriptionEntry" Placeholder="Description" />
+                <DatePicker x:Name="AssignmentDeadlinePicker"/>
+                <Picker x:Name="CoursePicker" Title="Select Course" />
+                <Button Text="Save Assignment" Clicked="AddAssignment" />
+
+                <!-- Edit Assignment -->
+                <Label Text="Edit Assignment" FontAttributes="Bold" />
+                <Picker x:Name="EditAssignmentPicker" Title="Select Assignment to Edit" />
+                <Entry x:Name="EditAssignmentDescriptionEntry" Placeholder="New Description" />
+                <DatePicker x:Name="EditAssignmentDeadlinePicker" />
+                <Button Text="Edit Assignment" Clicked="EditAssignment" />
+
+                <!-- Delete Assignment -->
+                <Label Text="Delete Assignment" FontAttributes="Bold" />
+                <Picker x:Name="DeleteAssignmentPicker" Title="Select Assignment to Delete" />
+                <Button Text="Delete Assignment" Clicked="DeleteAssignment" />
+            </StackLayout>
+
+            <!-- CRUD for Submissions -->
+            <StackLayout x:Name="SubmissionCrudForm" IsVisible="False" Spacing="10">
+                <Label Text="Add Submission" FontAttributes="Bold" />
+                <Picker x:Name="StudentPicker" Title="Select Student" />
+                <Picker x:Name="AssignmentPicker" Title="Select Assignment" />
+                <Entry x:Name="SubmissionScoreEntry" Placeholder="Score" Keyboard="Numeric" />
+                <DatePicker x:Name="SubmissionDatePicker" />
+                <Button Text="Save Submission" Clicked="AddSubmission" />
+
+                <Label Text="Edit Submission" FontAttributes="Bold" />
+                <Picker x:Name="EditSubmissionPicker" Title="Select Submission to Edit" />
+                <Picker x:Name="EditSubmissionAssignmentPicker" Title="Change Assignment" />
+                <Entry x:Name="EditSubmissionScoreEntry" Placeholder="New Score" Keyboard="Numeric" />
+                <Button Text="Edit Submission" Clicked="EditSubmission" />
+
+                <!-- Delete Submission -->
+                <Label Text="Delete Submission" FontAttributes="Bold" />
+                <Picker x:Name="DeleteSubmissionPicker" Title="Select Submission to Delete" />
+                <Button Text="Delete Submission" Clicked="DeleteSubmission" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
